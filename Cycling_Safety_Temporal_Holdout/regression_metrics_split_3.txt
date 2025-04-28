@@ -1,0 +1,6 @@
+MAE: 0.00
+RMSE: 0.00
+R²: 0.86
+Overall SMAPE: 0.13%
+Zero SMAPE: 0.00%
+Non-Zero SMAPE: 27.02%

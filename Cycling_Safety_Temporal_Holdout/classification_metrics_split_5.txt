@@ -1,0 +1,6 @@
+F1: 0.01
+Precision: 0.01
+Recall: 0.91
+Confusion Matrix:
+[[1940 3367]
+ [   2   21]]

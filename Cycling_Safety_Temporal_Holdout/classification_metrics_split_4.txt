@@ -1,0 +1,6 @@
+F1: 1.00
+Precision: 1.00
+Recall: 1.00
+Confusion Matrix:
+[[819   0]
+ [  0   1]]
