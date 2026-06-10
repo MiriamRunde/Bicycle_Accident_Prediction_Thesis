@@ -125,7 +125,7 @@ Features are engineered at **250 m** and **500 m** buffer radii around each grid
 ## Repository Structure
 
 ```
-thesis_clean/
+Bicycle_Accident_Prediction_Thesis/
 │
 ├── src/
 │   ├── models/
@@ -224,7 +224,7 @@ The framework shows that reliable volume estimates can be produced even when per
 
 ## Portfolio Site
 
-👉 **[View the portfolio](https://miriamrunde.github.io/thesis_clean/)**
+👉 **[View the portfolio](https://miriamrunde.github.io/Bicycle_Accident_Prediction_Thesis/)**
 
 To activate GitHub Pages: `Settings → Pages → Source: Deploy from a branch → Branch: main, /docs`
 
