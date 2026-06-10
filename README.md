@@ -74,33 +74,33 @@ Stage 2: Accident Risk Models
 ### Weekly Risk Forecast Maps (Predicted vs. Actual, Split 2)
 
 <p align="center">
-  <img src="plots/stage2_safety/temporal_holdout_maps/map_comparison_split2_week_36.png" width="700" alt="Map comparison week 36">
+  <img src="docs/images/map_comparison_split2_week_36.png" width="700" alt="Map comparison week 36">
 </p>
 
 ### SHAP Feature Importance — Classification & Regression
 
 <p float="left">
-  <img src="plots/stage2_safety/shap/shap_summary_classification_dot_full.png" width="48%" alt="SHAP classification dot plot">
-  <img src="plots/stage2_safety/shap/shap_summary_regression_dot_full.png" width="48%" alt="SHAP regression dot plot">
+  <img src="docs/images/shap_summary_classification_dot_full.png" width="48%" alt="SHAP classification dot plot">
+  <img src="docs/images/shap_summary_regression_dot_full.png" width="48%" alt="SHAP regression dot plot">
 </p>
 
 ### Permutation Importance
 
 <p float="left">
-  <img src="plots/stage2_safety/feature_importance/permutation_importance_classification.png" width="48%">
-  <img src="plots/stage2_safety/feature_importance/permutation_importance_regression.png" width="48%">
+  <img src="docs/images/permutation_importance_classification.png" width="48%">
+  <img src="docs/images/permutation_importance_regression.png" width="48%">
 </p>
 
 ### Baseline Model Comparison
 
 <p align="center">
-  <img src="plots/stage2_safety/baseline_model_comparison_custom_colors.png" width="650" alt="Baseline model comparison">
+  <img src="docs/images/baseline_model_comparison_custom_colors.png" width="650" alt="Baseline model comparison">
 </p>
 
 ### Partial Dependence Plot
 
 <p align="center">
-  <img src="plots/stage2_safety/partial_dependence.png" width="650" alt="Partial dependence plot">
+  <img src="docs/images/partial_dependence.png" width="650" alt="Partial dependence plot">
 </p>
 
 ---
