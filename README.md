@@ -77,11 +77,10 @@ Stage 2: Accident Risk Models
   <img src="docs/images/map_comparison_split2_week_36.png" width="700" alt="Map comparison week 36">
 </p>
 
-### SHAP Feature Importance — Classification & Regression
+### SHAP Feature Importance — Regression
 
-<p float="left">
-  <img src="docs/images/shap_summary_classification_dot_full.png" width="48%" alt="SHAP classification dot plot">
-  <img src="docs/images/shap_summary_regression_dot_full.png" width="48%" alt="SHAP regression dot plot">
+<p align="center">
+  <img src="docs/images/shap_summary_regression_dot_full.png" width="600" alt="SHAP regression dot plot">
 </p>
 
 ### Permutation Importance
@@ -91,17 +90,6 @@ Stage 2: Accident Risk Models
   <img src="docs/images/permutation_importance_regression.png" width="48%">
 </p>
 
-### Baseline Model Comparison
-
-<p align="center">
-  <img src="docs/images/baseline_model_comparison_custom_colors.png" width="650" alt="Baseline model comparison">
-</p>
-
-### Partial Dependence Plot
-
-<p align="center">
-  <img src="docs/images/partial_dependence.png" width="650" alt="Partial dependence plot">
-</p>
 
 ---
 

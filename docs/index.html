@@ -463,16 +463,11 @@
       </div>
     </div>
 
-    <h3 style="margin-top:2.5rem;">Baseline Model Comparison</h3>
-    <div class="img-full">
-      <img src="images/baseline_model_comparison_custom_colors.png" alt="Baseline model comparison" loading="lazy">
-      <div class="caption">Performance comparison across Random Forest, XGBoost, GBR, and Linear Regression</div>
-    </div>
-
-    <h3 style="margin-top:2.5rem;">Partial Dependence Plot</h3>
-    <div class="img-full">
-      <img src="images/partial_dependence.png" alt="Partial dependence" loading="lazy">
-      <div class="caption">Marginal effect of key features on predicted accident risk</div>
+    <h3 style="margin-top:2.5rem;">SHAP Feature Importance</h3>
+    <p>SHAP values reveal which features drive accident risk up or down, and by how much.</p>
+    <div class="img-full" style="max-width:700px; margin:0 auto;">
+      <img src="images/shap_summary_regression_dot_full.png" alt="SHAP regression dot plot" loading="lazy">
+      <div class="caption">SHAP dot plot — Regression model (relative accident risk per 1,000 cyclists)</div>
     </div>
   </div>
 </section>
