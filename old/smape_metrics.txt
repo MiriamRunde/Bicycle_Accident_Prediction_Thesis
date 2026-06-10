@@ -1,0 +1,2 @@
+Global SMAPE: 23.90%
+Mean SMAPE (Per Grid): 10.38%

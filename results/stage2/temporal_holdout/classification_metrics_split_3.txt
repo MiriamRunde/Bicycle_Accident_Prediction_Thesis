@@ -1,0 +1,6 @@
+F1: 0.78
+Precision: 0.63
+Recall: 1.00
+Confusion Matrix:
+[[5289   15]
+ [   0   26]]

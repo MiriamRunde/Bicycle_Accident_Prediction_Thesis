@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wheels in Motion, Risk in Mind? — Miriam Runde</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green:   #2d6a4f;
+      --green2:  #40916c;
+      --green3:  #74c69d;
+      --light:   #d8f3dc;
+      --bg:      #f8faf9;
+      --white:   #ffffff;
+      --text:    #1b2e23;
+      --muted:   #5a7063;
+      --border:  #c9e4c8;
+      --accent:  #1b4332;
+      --sans:    'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 2rem;
+    }
+    nav .logo { color: #fff; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.02em; }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; }
+    nav ul li a {
+      color: var(--green3); text-decoration: none; font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    nav ul li a:hover { color: #fff; }
+
+    /* ── Limitations ── */
+    .limit-cards {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem; margin-top: 2rem;
+    }
+    .limit-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-left: 4px solid var(--green2);
+      border-radius: 8px; padding: 1.25rem;
+    }
+    .limit-card h4 { color: var(--accent); margin-bottom: 0.5rem; font-size: 0.9rem; }
+    .limit-card p { font-size: 0.82rem; margin: 0; }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--green2) 100%);
+      color: #fff;
+      padding: 6rem 2rem 5rem;
+      text-align: center;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.2;
+      max-width: 800px;
+      margin: 0 auto 1rem;
+    }
+    .hero h1 em { font-style: normal; color: var(--green3); }
+    .hero .subtitle {
+      font-size: 1.05rem;
+      opacity: 0.85;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+    }
+    .hero-meta {
+      display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;
+      font-size: 0.85rem; opacity: 0.75;
+    }
+    .hero-meta span::before { content: "📌 "; }
+    .hero-meta span:nth-child(2)::before { content: "🎓 "; }
+    .hero-meta span:nth-child(3)::before { content: "📅 "; }
+    .hero-cta {
+      margin-top: 2.5rem;
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block; padding: 0.65rem 1.5rem;
+      border-radius: 6px; font-size: 0.9rem; font-weight: 600;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .btn-primary { background: var(--green3); color: var(--accent); }
+    .btn-primary:hover { background: #fff; }
+    .btn-outline { border: 2px solid rgba(255,255,255,0.5); color: #fff; }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+    /* ── Section ── */
+    section { padding: 4.5rem 2rem; }
+    .container { max-width: 960px; margin: 0 auto; }
+    .section-label {
+      text-transform: uppercase; letter-spacing: 0.1em;
+      font-size: 0.75rem; color: var(--green2); font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 1.75rem; font-weight: 800; color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    h3 { font-size: 1.15rem; font-weight: 700; color: var(--green); margin-bottom: 0.5rem; }
+    p { color: var(--muted); margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── Pipeline / Flow ── */
+    .pipeline {
+      display: flex; gap: 0; flex-wrap: wrap;
+      border: 2px solid var(--border); border-radius: 12px; overflow: hidden;
+      margin-top: 2rem;
+    }
+    .pipeline-stage {
+      flex: 1; min-width: 280px;
+      padding: 2rem;
+      background: var(--white);
+    }
+    .pipeline-stage:first-child { border-right: 2px solid var(--border); }
+    .stage-num {
+      width: 2rem; height: 2rem; border-radius: 50%;
+      background: var(--green); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .arrow-connector {
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem; color: var(--green3); font-size: 1.5rem;
+      background: var(--light);
+    }
+    .tag {
+      display: inline-block; background: var(--light);
+      color: var(--green); padding: 0.2rem 0.6rem;
+      border-radius: 4px; font-size: 0.75rem; font-weight: 600;
+      margin: 0.2rem 0.15rem 0 0;
+    }
+    .result-chip {
+      display: inline-block; background: var(--green);
+      color: #fff; padding: 0.2rem 0.7rem;
+      border-radius: 4px; font-size: 0.8rem; font-weight: 700;
+      margin-top: 0.75rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      background: var(--accent);
+      padding: 2.5rem 2rem;
+      display: flex; gap: 0; flex-wrap: wrap;
+    }
+    .stat {
+      flex: 1; min-width: 160px;
+      text-align: center; padding: 1rem;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat:last-child { border-right: none; }
+    .stat .num {
+      font-size: 2.2rem; font-weight: 800; color: var(--green3);
+      line-height: 1;
+    }
+    .stat .label { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 0.3rem; }
+
+    /* ── Table ── */
+    .table-wrap { overflow-x: auto; margin-top: 1.5rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    thead { background: var(--accent); color: #fff; }
+    thead th { padding: 0.8rem 1rem; text-align: left; font-weight: 600; }
+    tbody tr:nth-child(even) { background: var(--light); }
+    tbody tr:first-child { background: #d0ede0; font-weight: 700; }
+    tbody td { padding: 0.7rem 1rem; color: var(--text); }
+    .best { color: var(--green); font-weight: 800; }
+
+    /* ── Image grid ── */
+    .img-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .img-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden;
+    }
+    .img-card img { width: 100%; display: block; }
+    .img-card .caption {
+      padding: 0.75rem 1rem;
+      font-size: 0.82rem; color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    .img-full { margin-top: 2rem; }
+    .img-full img {
+      width: 100%; border-radius: 10px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+    .img-full .caption {
+      font-size: 0.82rem; color: var(--muted);
+      text-align: center; margin-top: 0.5rem;
+    }
+
+    /* ── Alternating sections ── */
+    section.alt { background: var(--white); }
+
+    /* ── Feature grid ── */
+    .feature-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem; margin-top: 2rem;
+    }
+    .feature-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.25rem;
+    }
+    .feature-card .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .feature-card h4 { font-size: 0.9rem; color: var(--accent); margin-bottom: 0.4rem; }
+    .feature-card p { font-size: 0.8rem; color: var(--muted); margin: 0; }
+
+    /* ── Policy section ── */
+    .policy-cards {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem; margin-top: 2rem;
+    }
+    .policy-card {
+      background: var(--light); border-radius: 8px; padding: 1.5rem;
+    }
+    .policy-card h4 { color: var(--accent); margin-bottom: 0.5rem; }
+    .policy-card p { font-size: 0.85rem; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--accent); color: rgba(255,255,255,0.7);
+      padding: 2.5rem 2rem; text-align: center; font-size: 0.85rem;
+    }
+    footer a { color: var(--green3); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── Divider ── */
+    .divider { height: 4px; background: linear-gradient(90deg, var(--green3), var(--green2), var(--accent)); }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="logo">🚴 Cycling Safety · Camden</div>
+  <ul>
+    <li><a href="#pipeline">Pipeline</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#visuals">Visuals</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#policy">Policy</a></li>
+    <li><a href="#limitations">Limitations</a></li>
+    <li><a href="https://github.com/miriamrunde/thesis_clean" target="_blank">GitHub ↗</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="badge">M.Sc. Thesis · Hertie School · 2025</div>
+  <h1>Wheels in Motion, <em>Risk in Mind?</em></h1>
+  <p class="subtitle">A Two-Stage Machine-Learning Framework for Extrapolating Bike Volume and Exposure-Based Accident Risk Prediction</p>
+  <div class="hero-meta">
+    <span>London Borough of Camden</span>
+    <span>Hertie School · Data Science for Public Policy</span>
+    <span>April 2025</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#pipeline" class="btn btn-primary">Explore the Research</a>
+    <a href="https://github.com/miriamrunde/thesis_clean" class="btn btn-outline" target="_blank">View Code on GitHub</a>
+  </div>
+</div>
+
+<!-- Stats bar -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="num">21%</div>
+    <div class="label">Volume model SMAPE (Stage 1)</div>
+  </div>
+  <div class="stat">
+    <div class="num">85%+</div>
+    <div class="label">Variance explained in held-out locations</div>
+  </div>
+  <div class="stat">
+    <div class="num">0.99</div>
+    <div class="label">Accident classification F1 score</div>
+  </div>
+  <div class="stat">
+    <div class="num">R² 0.84</div>
+    <div class="label">Relative risk regression</div>
+  </div>
+  <div class="stat">
+    <div class="num">130+</div>
+    <div class="label">Feature variables</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Abstract -->
+<section id="abstract">
+  <div class="container">
+    <p class="section-label">Research Overview</p>
+    <h2>The Problem with Counting Accidents</h2>
+    <p>
+      Raw accident counts are a misleading measure of cycling danger. A busy junction will naturally see more crashes than a quiet side street — not because it's proportionally more dangerous, but simply because more cyclists pass through it. To identify <em>true</em> hotspots of risk, we need to normalise crash counts against <strong>cycling volume</strong> (exposure).
+    </p>
+    <p>
+      The challenge: permanent bicycle counters cover only a small fraction of the road network. This thesis develops a machine-learning pipeline to fill that gap — extrapolating volume from 28 counting stations across all of Camden, then using those estimates to compute per-cyclist accident risk at fine spatial resolution (250 × 250 m grid cells).
+    </p>
+    <p>
+      The result is weekly, spatially granular risk maps that reveal <strong>low-volume, high-risk hotspots</strong> invisible to raw crash count analysis — exactly the kind of insight planners need to move toward Vision Zero.
+    </p>
+  </div>
+</section>
+
+<!-- Pipeline -->
+<section id="pipeline" class="alt">
+  <div class="container">
+    <p class="section-label">Methodology</p>
+    <h2>The Two-Stage Pipeline</h2>
+    <p>The framework decouples the problem into two sequential supervised learning tasks:</p>
+
+    <div class="pipeline">
+      <div class="pipeline-stage">
+        <div class="stage-num">1</div>
+        <h3>Cycling Volume Extrapolation</h3>
+        <p>A Random Forest regressor is trained on 2022 daily counts from 28 TfL camera-based counters. Over 130 features describe each 250 × 250 m grid cell across the borough.</p>
+        <div>
+          <span class="tag">Weather</span>
+          <span class="tag">Land use</span>
+          <span class="tag">Demographics</span>
+          <span class="tag">Cycling infra</span>
+          <span class="tag">PT stops</span>
+          <span class="tag">Temporal</span>
+        </div>
+        <div class="result-chip">SMAPE 21.6% · R² >0.85</div>
+      </div>
+      <div class="arrow-connector">→</div>
+      <div class="pipeline-stage">
+        <div class="stage-num">2</div>
+        <h3>Exposure-Adjusted Accident Risk</h3>
+        <p>Stage 1 predictions serve as exposure. Two models are trained on weekly grid-cell data:</p>
+        <p><strong>Classification</strong> — did any accident occur this week? (0/1)<br>
+        <strong>Regression</strong> — how many accidents per 1,000 predicted cyclists?</p>
+        <p>Both use temporal holdout validation to prevent data leakage.</p>
+        <div class="result-chip">F1 = 0.99</div>
+        <div class="result-chip">R² = 0.84</div>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem;">
+      <h3>Temporal Validation Strategy</h3>
+      <p>All models are evaluated using <strong>temporal holdout splits</strong> — training on earlier weeks, testing on later weeks — to respect the natural ordering of time-series data and avoid leakage. Seven different splits are tested to assess robustness.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Results -->
+<section id="results">
+  <div class="container">
+    <p class="section-label">Model Performance</p>
+    <h2>Key Results</h2>
+
+    <h3 style="margin-top:1.5rem;">Stage 2 — Model Comparison (Regression: accidents per 1,000 bikes)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>R²</th>
+            <th>SMAPE</th>
+            <th>MAE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🏆 Random Forest</td>
+            <td class="best">0.82</td>
+            <td class="best">0.10%</td>
+            <td class="best">0.005</td>
+          </tr>
+          <tr>
+            <td>XGBoost</td>
+            <td>0.81</td>
+            <td>199%</td>
+            <td>0.005</td>
+          </tr>
+          <tr>
+            <td>Gradient Boosting</td>
+            <td>0.78</td>
+            <td>199%</td>
+            <td>0.006</td>
+          </tr>
+          <tr>
+            <td>Linear Regression</td>
+            <td>−0.11</td>
+            <td>200%</td>
+            <td>0.049</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:0.75rem; font-size:0.85rem;">
+      Random Forest dominates on SMAPE because the target is highly zero-inflated — other tree-based methods collapse on this metric while RF's ensemble averaging handles sparsity more gracefully.
+    </p>
+
+    <h3 style="margin-top:2rem;">Temporal Holdout — Stage 2 Best Splits</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Task</th><th>Split</th><th>F1</th><th>Precision</th><th>Recall</th><th>R²</th><th>Non-zero SMAPE</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Classification</td><td>2 (weeks 27–52)</td><td class="best">0.99</td><td>0.99</td><td>0.99</td><td>—</td><td>—</td></tr>
+          <tr><td>Regression</td><td>2 (weeks 27–52)</td><td>—</td><td>—</td><td>—</td><td class="best">0.84</td><td>24%</td></tr>
+          <tr><td>Regression</td><td>3 (weeks 40–52)</td><td>—</td><td>—</td><td>—</td><td class="best">0.86</td><td>27%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:2rem;">Stage 1 — Volume Forecast Performance</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Global SMAPE</td><td class="best">21.6%</td></tr>
+          <tr><td>Mean SMAPE per grid cell</td><td class="best">10.4%</td></tr>
+          <tr><td>Variance explained (held-out locations)</td><td class="best">>85%</td></tr>
+          <tr><td>Count stations used for training</td><td>28</td></tr>
+          <tr><td>% of area covered by permanent counters</td><td>~10%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Visuals -->
+<section id="visuals" class="alt">
+  <div class="container">
+    <p class="section-label">Visualisations</p>
+    <h2>Selected Results</h2>
+
+    <h3 style="margin-top:1.5rem;">Weekly Risk Maps — Predicted vs. Actual (Split 2)</h3>
+    <p>Side-by-side comparison of predicted accident risk and observed accidents per grid cell, week 36 and week 40.</p>
+    <div class="img-grid">
+      <div class="img-card">
+        <img src="images/map_comparison_split2_week_36.png" alt="Map comparison week 36" loading="lazy">
+        <div class="caption">Risk map comparison — Week 36</div>
+      </div>
+      <div class="img-card">
+        <img src="images/map_comparison_split2_week_40.png" alt="Map comparison week 40" loading="lazy">
+        <div class="caption">Risk map comparison — Week 40</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:2.5rem;">Baseline Model Comparison</h3>
+    <div class="img-full">
+      <img src="images/baseline_model_comparison_custom_colors.png" alt="Baseline model comparison" loading="lazy">
+      <div class="caption">Performance comparison across Random Forest, XGBoost, GBR, and Linear Regression</div>
+    </div>
+
+    <h3 style="margin-top:2.5rem;">Model Metrics Across Temporal Splits</h3>
+    <div class="img-grid">
+      <div class="img-card">
+        <img src="images/classification_metrics_viz.png" alt="Classification metrics" loading="lazy">
+        <div class="caption">Classification metrics across temporal splits</div>
+      </div>
+      <div class="img-card">
+        <img src="images/regression_metrics_viz.png" alt="Regression metrics" loading="lazy">
+        <div class="caption">Regression metrics across temporal splits</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:2.5rem;">Confusion Matrix — Accident Classification (Split 2)</h3>
+    <div class="img-full" style="max-width:500px; margin: 0 auto;">
+      <img src="images/confusion_matrix_split_2_viridis.png" alt="Confusion matrix split 2" loading="lazy">
+      <div class="caption">True vs. predicted accident occurrence — temporal holdout split 2 (F1 = 0.99)</div>
+    </div>
+
+    <h3 style="margin-top:2.5rem;">SHAP Feature Importance</h3>
+    <p>SHAP values explain model predictions — revealing which features drive accident risk up or down, and by how much.</p>
+    <div class="img-grid">
+      <div class="img-card">
+        <img src="images/shap_summary_classification_dot_full.png" alt="SHAP classification dot" loading="lazy">
+        <div class="caption">SHAP dot plot — Classification model (accident occurrence)</div>
+      </div>
+      <div class="img-card">
+        <img src="images/shap_summary_regression_dot_full.png" alt="SHAP regression dot" loading="lazy">
+        <div class="caption">SHAP dot plot — Regression model (relative risk)</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:2.5rem;">Permutation Importance</h3>
+    <div class="img-grid">
+      <div class="img-card">
+        <img src="images/permutation_importance_classification.png" alt="Permutation importance classification" loading="lazy">
+        <div class="caption">Permutation importance — Classification</div>
+      </div>
+      <div class="img-card">
+        <img src="images/permutation_importance_regression.png" alt="Permutation importance regression" loading="lazy">
+        <div class="caption">Permutation importance — Regression</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:2.5rem;">Partial Dependence Plot</h3>
+    <div class="img-full">
+      <img src="images/partial_dependence.png" alt="Partial dependence" loading="lazy">
+      <div class="caption">Marginal effect of key features on predicted accident risk</div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section id="features">
+  <div class="container">
+    <p class="section-label">Data & Engineering</p>
+    <h2>Feature Groups</h2>
+    <p>Over 130 features are engineered at 250 m and 500 m buffer radii around each grid cell, drawn from open data sources.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">⛅</div>
+        <h4>Meteorological</h4>
+        <p>Avg/min/max temperature, wind speed &amp; direction, pressure (Meteostat)</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🗓️</div>
+        <h4>Spatial &amp; Temporal</h4>
+        <p>Grid centroid, week of year, day of week, season, public holidays</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🏘️</div>
+        <h4>Land Use</h4>
+        <p>% residential, commercial, retail, park, forest, water, construction … (OpenStreetMap)</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🚲</div>
+        <h4>Cycling Infrastructure</h4>
+        <p>Bike lane length/density, dedicated cycleways, contra-flow lanes, bike parking</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🚌</div>
+        <h4>Public Transport</h4>
+        <p>Bus stops, rail stops, traffic signals, pedestrian crossings, road intersections</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">👥</div>
+        <h4>Demographics</h4>
+        <p>Population density, age bands (2013 &amp; 2023) — ONS Census</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🏬</div>
+        <h4>Amenities</h4>
+        <p>Shops, schools/universities, hospitals, hotels within 250 m &amp; 500 m buffers</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🛣️</div>
+        <h4>Proximity &amp; Traffic</h4>
+        <p>Distance to city centre, maximum road speed limit</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Safety in numbers -->
+<section class="alt">
+  <div class="container">
+    <p class="section-label">Bonus Finding</p>
+    <h2>Safety in Numbers</h2>
+    <p>
+      A log–log OLS regression between total accidents and predicted cycling volume produces an <strong>elasticity below 1</strong> — meaning that as cycling volume increases, per-cyclist risk decreases. This provides modest empirical support for the well-known <em>"Safety in Numbers"</em> hypothesis (Jacobsen, 2003): more cyclists on the road correlates with lower individual risk, potentially through increased driver awareness and infrastructure investment.
+    </p>
+    <p>
+      This result aligns with findings from Stockholm, Copenhagen, and other cities that have seen accident rates fall as cycling mode share grows — suggesting that policies promoting cycling uptake may have a positive safety feedback effect.
+    </p>
+  </div>
+</section>
+
+<!-- Policy -->
+<section id="policy">
+  <div class="container">
+    <p class="section-label">Implications</p>
+    <h2>Policy Recommendations</h2>
+    <p>The framework demonstrates that reliable volume estimates can be produced even when permanent count data cover just 10% of an area. This enables planners to generate exposure-adjusted risk maps at low cost.</p>
+
+    <div class="policy-cards">
+      <div class="policy-card">
+        <h4>🎯 Targeted Infrastructure Investment</h4>
+        <p>Use relative risk maps to identify high-risk, low-volume grid cells — the dangerous spots raw accident counts miss — and prioritise safety interventions there.</p>
+      </div>
+      <div class="policy-card">
+        <h4>📡 Expand Counting Networks</h4>
+        <p>Even a modest expansion from 28 to ~50 strategically placed counters could dramatically improve volume model accuracy in underrepresented areas.</p>
+      </div>
+      <div class="policy-card">
+        <h4>🗺️ Open Risk Dashboards</h4>
+        <p>Weekly risk maps could be published as open data for researchers, insurers, and the public — enabling data-informed route choices and advocacy.</p>
+      </div>
+      <div class="policy-card">
+        <h4>🚦 Vision Zero Integration</h4>
+        <p>Exposure-adjusted metrics should replace raw crash counts in official safety monitoring, aligning with Vision Zero's goal of eliminating road deaths and serious injuries.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Limitations -->
+<section id="limitations" class="alt">
+  <div class="container">
+    <p class="section-label">Honest Science</p>
+    <h2>Limitations</h2>
+    <p>Acknowledging these openly is part of good research practice — and shows a reviewer that you understand your own work deeply.</p>
+
+    <div class="limit-cards">
+      <div class="limit-card">
+        <h4>Classification F1 = 0.99 — spatial memorisation, not temporal prediction</h4>
+        <p>Static features (land use, infrastructure, demographics) don't change week to week, so the model largely learns <em>which grid cells are structurally prone to accidents</em> rather than <em>when</em> accidents will occur. A stricter test would hold out entire geographic areas unseen during training. The result is still useful for identifying high-risk locations, but is not a true weekly forecast.</p>
+      </div>
+      <div class="limit-card">
+        <h4>Stage 1 — per-grid scaling is fitted before cross-validation</h4>
+        <p>The StandardScaler for each counting station is computed on all of that station's historical data before Leave-One-Grid-Out splits. In real deployment on a new, unseen location you'd have no historical data and would need the global fallback scaler. The reported Stage 1 performance is therefore marginally optimistic.</p>
+      </div>
+      <div class="limit-card">
+        <h4>SMAPE is misleading on zero-inflated targets</h4>
+        <p>When both true and predicted values are near zero (the majority of grid-week pairs), SMAPE collapses to ~0, artificially deflating the global metric. This explains why RF gets SMAPE = 0.10% while XGBoost gets 199% — it's not a meaningful performance gap. The non-zero SMAPE (~24–27%) is the more honest metric for the regression model.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<div class="divider"></div>
+<footer>
+  <p style="margin-bottom:0.5rem; font-size:1rem; color:#fff; font-weight:600;">Miriam Runde</p>
+  <p>M.Sc. Data Science for Public Policy · Hertie School · April 2025</p>
+  <p style="margin-top:0.5rem;">
+    <a href="mailto:miriam.runde@googlemail.com">miriam.runde@googlemail.com</a> ·
+    <a href="https://github.com/miriamrunde/thesis_clean" target="_blank">GitHub Repository ↗</a>
+  </p>
+  <p style="margin-top:1rem; font-size:0.75rem; opacity:0.5;">
+    Supervisor: Prof. Dr. Lynn Kaack · Data: TfL, UK STATS19, OpenStreetMap, ONS Census, Meteostat
+  </p>
+</footer>
+
+</body>
+</html>
